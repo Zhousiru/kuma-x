@@ -6,7 +6,7 @@ import { HERO_HEADLINE, HERO_TEXT } from './constants'
 import { STATUS_ICON } from './styles'
 
 const heroCoin = cva(
-  'hidden h-20 w-20 flex-none items-center justify-center rounded-full md:flex',
+  'flex h-14 w-14 flex-none items-center justify-center rounded-full md:h-20 md:w-20',
   {
     variants: {
       status: {
@@ -57,7 +57,7 @@ export function Hero({
           </p>
         </div>
         <div aria-hidden className={heroCoin({ status })}>
-          <Icon className="h-9 w-9" />
+          <Icon className="h-6 w-6 md:h-9 md:w-9" />
         </div>
       </div>
     </section>
