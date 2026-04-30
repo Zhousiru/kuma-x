@@ -7,13 +7,13 @@ import {
   elapsedSinceFirstBeat,
   elapsedSinceLastBeat,
   orderHeartbeats,
-  shouldShowElapsedLabels,
 } from "@/lib/heartbeat";
 import type { Heartbeat, Monitor } from "@/lib/kuma";
 import { lastStatus } from "@/lib/status";
 import { CertExpiryPill } from "./cert-expiry-pill";
-import { PLACEHOLDER, STATUS_LABEL } from "./constants";
-import { HeartbeatChart } from "./heartbeat-chart";
+import { ClientOnly } from "./client-only";
+import { STATUS_LABEL } from "./constants";
+import { HeartbeatChart, SLOTS } from "./heartbeat-chart";
 import { HoverPill } from "./hover-pill";
 import { statusDot, statusText } from "./styles";
 import { TagChip } from "./tag-chip";
@@ -50,13 +50,9 @@ export function ServiceRow({
   const heartbeats = useMemo(() => orderHeartbeats(beats), [beats]);
   const status = lastStatus(beats);
   const linkTarget = monitorHref(monitor);
-  const showElapsedLabels = shouldShowElapsedLabels(heartbeats);
-  const firstElapsed = showElapsedLabels
-    ? elapsedSinceFirstBeat(heartbeats, now)
-    : null;
-  const lastElapsed = showElapsedLabels
-    ? elapsedSinceLastBeat(heartbeats, now)
-    : null;
+  const chartFull = heartbeats.length >= SLOTS;
+  const firstElapsed = chartFull ? elapsedSinceFirstBeat(heartbeats, now) : null;
+  const lastElapsed = elapsedSinceLastBeat(heartbeats, now);
 
   const statusToneClass = statusText({ status });
 
@@ -119,11 +115,8 @@ export function ServiceRow({
           />
 
           <div className="mt-2 grid grid-cols-3 items-center text-xs">
-            <span
-              suppressHydrationWarning
-              className="justify-self-start font-medium text-foreground-subtle"
-            >
-              {firstElapsed ?? PLACEHOLDER.none}
+            <span className="justify-self-start font-medium text-foreground-subtle">
+              <ClientOnly>{firstElapsed}</ClientOnly>
             </span>
             <div
               className={cn(
@@ -134,7 +127,7 @@ export function ServiceRow({
               <HoverPill hovered={hovered} now={now} uptime={uptime} />
             </div>
             <span className="justify-self-end font-medium text-foreground-subtle">
-              {lastElapsed ?? PLACEHOLDER.none}
+              <ClientOnly>{lastElapsed}</ClientOnly>
             </span>
           </div>
         </>

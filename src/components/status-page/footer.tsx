@@ -16,8 +16,8 @@ export function Footer({
   const year = new Date().getFullYear()
   return (
     <footer className="border-t border-border bg-surface-sunken">
-      <div className="mx-auto max-w-3xl px-4 py-10 text-sm text-foreground-muted">
-        <div className="grid gap-8 sm:grid-cols-2">
+      <div className="mx-auto max-w-3xl px-4 h-24 flex items-center text-sm text-foreground-muted">
+        <div className="grid gap-4 sm:grid-cols-2 w-full">
           <div className="flex flex-col gap-3">
             {footerText ? (
               <p className="leading-relaxed">{footerText}</p>
@@ -31,7 +31,10 @@ export function Footer({
           </div>
           <div className="flex flex-col gap-2 sm:items-end">
             {hasRefresh ? (
-              <p suppressHydrationWarning className="text-foreground-subtle">
+              <p
+                suppressHydrationWarning
+                className="text-foreground-subtle tabular-nums"
+              >
                 {FOOTER_TEXT.refreshIn}{' '}
                 {formatClock(Math.max(0, (nextRefreshAt - (now ?? 0)) / 1000))}
               </p>

@@ -4,7 +4,6 @@ import { parseKumaDate } from "./format";
 const MINUTE = 60 * 1000;
 const HOUR = 60 * MINUTE;
 const LAST_BEAT_NOW_TOLERANCE_MS = 2 * MINUTE;
-const MIN_BEATS_FOR_ELAPSED_LABELS = 5;
 
 export function orderHeartbeats(beats: Heartbeat[] | undefined): Heartbeat[] {
   return [...(beats ?? [])].sort(
@@ -16,10 +15,6 @@ export function latestHeartbeat(
   beats: Heartbeat[] | undefined,
 ): Heartbeat | undefined {
   return orderHeartbeats(beats).at(-1);
-}
-
-export function shouldShowElapsedLabels(beats: Heartbeat[]): boolean {
-  return beats.length >= MIN_BEATS_FOR_ELAPSED_LABELS;
 }
 
 export function elapsedSinceFirstBeat(
