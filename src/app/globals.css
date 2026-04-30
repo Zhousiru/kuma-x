@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #fafafa;
+  --surface-sunken: #f5f5f5;
+  --surface-raised: #ffffff;
+
+  --foreground: #0a0a0a;
+  --foreground-muted: #52525b;
+  --foreground-subtle: #a1a1aa;
+  --foreground-faint: #d4d4d8;
+
+  --border: #ececef;
+  --border-strong: #d4d4d8;
+
+  --success: #16a34a;
+  --success-strong: #15803d;
+  --success-soft: #4ade80;
+  --success-bg: #ecfdf5;
+  --success-on: #ffffff;
+
+  --warning: #f59e0b;
+  --warning-strong: #b45309;
+  --warning-soft: #fbbf24;
+  --warning-bg: #fef7e0;
+  --warning-on: #1c1408;
+
+  --danger: #ef4444;
+  --danger-strong: #b91c1c;
+  --danger-soft: #f87171;
+  --danger-bg: #fef2f2;
+  --danger-on: #ffffff;
+
+  --info: #0ea5e9;
+  --info-strong: #0369a1;
+  --info-soft: #38bdf8;
+  --info-bg: #eff6ff;
+
+  --neutral: #71717a;
+  --neutral-bg: #f4f4f5;
+
+  --selection: #0a0a0a14;
+  --ring: #0a0a0a1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0b;
+    --surface: #0f0f11;
+    --surface-muted: #141417;
+    --surface-sunken: #18181b;
+    --surface-raised: #1c1c20;
+
+    --foreground: #fafafa;
+    --foreground-muted: #a1a1aa;
+    --foreground-subtle: #71717a;
+    --foreground-faint: #3f3f46;
+
+    --border: #27272a;
+    --border-strong: #3f3f46;
+
+    --success: #22c55e;
+    --success-strong: #4ade80;
+    --success-soft: #16a34a;
+    --success-bg: #052e1a;
+    --success-on: #052e16;
+
+    --warning: #f59e0b;
+    --warning-strong: #fcd34d;
+    --warning-soft: #d97706;
+    --warning-bg: #2a1d05;
+    --warning-on: #1c1408;
+
+    --danger: #f87171;
+    --danger-strong: #fca5a5;
+    --danger-soft: #ef4444;
+    --danger-bg: #2a0b0b;
+    --danger-on: #1f0a0a;
+
+    --info: #38bdf8;
+    --info-strong: #7dd3fc;
+    --info-soft: #0ea5e9;
+    --info-bg: #082238;
+
+    --neutral: #a1a1aa;
+    --neutral-bg: #1f1f23;
+
+    --selection: #fafafa1f;
+    --ring: #fafafa29;
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-raised: var(--surface-raised);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-foreground-faint: var(--foreground-faint);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-success: var(--success);
+  --color-success-strong: var(--success-strong);
+  --color-success-soft: var(--success-soft);
+  --color-success-bg: var(--success-bg);
+  --color-success-on: var(--success-on);
+
+  --color-warning: var(--warning);
+  --color-warning-strong: var(--warning-strong);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-on: var(--warning-on);
+
+  --color-danger: var(--danger);
+  --color-danger-strong: var(--danger-strong);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-on: var(--danger-on);
+
+  --color-info: var(--info);
+  --color-info-strong: var(--info-strong);
+  --color-info-soft: var(--info-soft);
+  --color-info-bg: var(--info-bg);
+
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+
+  --color-ring: var(--ring);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+.prose-kuma {
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--foreground-muted);
+}
+.prose-kuma > :first-child {
+  margin-top: 0;
+}
+.prose-kuma > :last-child {
+  margin-bottom: 0;
+}
+.prose-kuma p {
+  margin: 0.5em 0;
+}
+.prose-kuma a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-strong);
+}
+.prose-kuma a:hover {
+  text-decoration-color: var(--foreground);
+}
+.prose-kuma code {
+  font-size: 0.92em;
+  background: var(--surface-sunken);
+  padding: 0.05em 0.4em;
+  border-radius: 4px;
+}
+.prose-kuma pre {
+  font-size: 0.85em;
+  background: var(--surface-sunken);
+  padding: 0.7em 0.9em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.6em 0;
+}
+.prose-kuma pre code {
+  background: transparent;
+  padding: 0;
+}
+.prose-kuma ul,
+.prose-kuma ol {
+  margin: 0.5em 0;
+  padding-left: 1.4em;
+}
+.prose-kuma li {
+  margin: 0.15em 0;
+}
+.prose-kuma blockquote {
+  border-left: 2px solid var(--border);
+  padding-left: 0.9em;
+  color: var(--foreground-subtle);
+  margin: 0.6em 0;
+}
+.prose-kuma table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.7em 0;
+  font-size: 0.92em;
+}
+.prose-kuma th,
+.prose-kuma td {
+  border: 1px solid var(--border);
+  padding: 0.35em 0.55em;
+  text-align: left;
+}
+.prose-kuma th {
+  background: var(--surface-sunken);
+  color: var(--foreground);
+  font-weight: 600;
+}

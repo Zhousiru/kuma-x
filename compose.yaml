@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: .
+    image: kuma-x
+    container_name: kuma-x
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      # Only the Next.js-owned paths hit this service. Everything else
+      # (dashboard, /api/*, /assets/*, /login, /setup, /status/*, ...)
+      # falls through to the Kuma router on the same Host.
+      - traefik.http.routers.kuma-x.rule=Host(`up.qxq.moe`) && (Path(`/`) || Path(`/favicon.ico`) || PathPrefix(`/p/`) || PathPrefix(`/_next/`))
+
+networks:
+  traefik:
+    external: true
