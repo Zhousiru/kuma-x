@@ -8,6 +8,7 @@ import {
 import type { ComponentType } from "react";
 import type { Incident, IncidentStyle } from "@/lib/kuma";
 import { formatDateTime, formatRelative } from "@/lib/format";
+import { ClientOnly } from "./client-only";
 import { PAST_INCIDENT } from "./constants";
 import { EventCard, type EventCardVariant } from "./event-card";
 import { Markdown } from "./markdown";
@@ -56,11 +57,15 @@ export function IncidentCard({
     ) : (
       <span className="flex flex-wrap gap-x-4 gap-y-0.5">
         <span>
-          {PAST_INCIDENT.created}: {formatDateTime(incident.createdDate)}
+          {PAST_INCIDENT.created}:{" "}
+          <ClientOnly>{formatDateTime(incident.createdDate)}</ClientOnly>
         </span>
         {incident.lastUpdatedDate ? (
           <span>
-            {PAST_INCIDENT.updated}: {formatDateTime(incident.lastUpdatedDate)}
+            {PAST_INCIDENT.updated}:{" "}
+            <ClientOnly>
+              {formatDateTime(incident.lastUpdatedDate)}
+            </ClientOnly>
           </span>
         ) : null}
       </span>

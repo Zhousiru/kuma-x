@@ -1,6 +1,7 @@
 import { cva } from 'class-variance-authority'
 import { formatDateTime } from '@/lib/format'
 import type { HeroStatus } from '@/lib/status'
+import { ClientOnly } from './client-only'
 import { HERO_HEADLINE, HERO_TEXT } from './constants'
 import { STATUS_ICON } from './styles'
 
@@ -73,15 +74,13 @@ export function Hero({
               {summary}
             </p>
           ) : null}
-          {lastUpdatedAt > 0 ? (
-            <p
-              suppressHydrationWarning
-              className="mt-2 text-xs text-foreground-subtle"
-            >
-              {HERO_TEXT.lastUpdated}{' '}
-              {formatDateTime(new Date(lastUpdatedAt).toISOString())}
-            </p>
-          ) : null}
+          <p className="mt-2 text-xs text-foreground-subtle">
+            <ClientOnly>
+              {lastUpdatedAt > 0
+                ? `${HERO_TEXT.lastUpdated} ${formatDateTime(new Date(lastUpdatedAt).toISOString())}`
+                : ' '}
+            </ClientOnly>
+          </p>
         </div>
         <div aria-hidden className={heroCoin({ status })}>
           <Icon className="h-9 w-9" />

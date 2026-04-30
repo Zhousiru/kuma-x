@@ -2,6 +2,7 @@ import { CalendarClock, Wrench } from "lucide-react";
 import type { ComponentType } from "react";
 import type { Maintenance, MaintenanceStatus } from "@/lib/kuma";
 import { formatDateTime } from "@/lib/format";
+import { ClientOnly } from "./client-only";
 import { MAINTENANCE_LABEL } from "./constants";
 import { EventCard } from "./event-card";
 import { Markdown } from "./markdown";
@@ -54,8 +55,8 @@ export function Maintenances({ list }: { list: Maintenance[] }) {
             meta={
               slot ? (
                 <span className="text-info-strong">
-                  {formatDateTime(slot.startDate)} →{" "}
-                  {formatDateTime(slot.endDate)}
+                  <ClientOnly>{formatDateTime(slot.startDate)}</ClientOnly> →{" "}
+                  <ClientOnly>{formatDateTime(slot.endDate)}</ClientOnly>
                   {tz ? ` (${tz})` : ""}
                 </span>
               ) : null

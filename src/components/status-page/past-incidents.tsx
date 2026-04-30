@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import type { Incident } from "@/lib/kuma";
 import { dayKey, formatDayHeading } from "@/lib/format";
+import { ClientOnly } from "./client-only";
 import { SECTION_TITLE } from "./constants";
 import { IncidentCard } from "./incident-card";
 
@@ -35,7 +36,7 @@ export function PastIncidents({
         {grouped.map(([day, items]) => (
           <div key={day} className="flex flex-col">
             <h3 className="mb-1 text-xs font-medium uppercase tracking-wide text-foreground-subtle">
-              {formatDayHeading(day)}
+              <ClientOnly>{formatDayHeading(day)}</ClientOnly>
             </h3>
             {items.map((incident) => (
               <IncidentCard
