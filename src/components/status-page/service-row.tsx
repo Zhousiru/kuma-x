@@ -60,7 +60,7 @@ export function ServiceRow({
 
   return (
     <div className="px-2 py-3">
-      <div className="mb-2 flex flex-col justify-between gap-1.5 sm:flex-row sm:items-center">
+      <div className="mb-2 flex justify-between gap-1.5 items-center">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
           {linkTarget ? (
             <a

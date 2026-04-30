@@ -1,12 +1,12 @@
 'use client'
 
+import { cn } from '@/lib/cn'
+import type { Heartbeat, MonitorGroup as MonitorGroupT } from '@/lib/kuma'
+import { groupStatus } from '@/lib/status'
 import { cva } from 'class-variance-authority'
 import { ChevronDown } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
-import { cn } from '@/lib/cn'
-import type { Heartbeat, MonitorGroup as MonitorGroupT } from '@/lib/kuma'
-import { groupStatus } from '@/lib/status'
 import { STATUS_LABEL } from './constants'
 import { ServiceRow } from './service-row'
 import { STATUS_ICON, statusText } from './styles'
@@ -52,13 +52,9 @@ export function MonitorGroup({
         aria-expanded={expanded}
         className="group flex w-full cursor-pointer items-center justify-between border-none bg-transparent px-4 py-5 text-left outline-none transition-colors hover:bg-surface-muted"
       >
-        <span className="font-semibold text-foreground">
-          {group.name}
-        </span>
+        <span className="font-semibold text-foreground">{group.name}</span>
         <div className="flex items-center gap-3">
-          <span
-            className={cn('transition-colors', statusText({ status }))}
-          >
+          <span className={cn('transition-colors', statusText({ status }))}>
             <span className="hidden text-sm font-medium capitalize md:inline">
               {statusLabel}
             </span>
