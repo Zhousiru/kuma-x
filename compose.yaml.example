@@ -1,11 +1,9 @@
 services:
-  web:
-    build:
-      context: .
-    image: kuma-x
+  kuma-x:
+    image: ghcr.io/zhousiru/kuma-x:latest
     container_name: kuma-x
-    ports:
-      - '3000:3000'
+    # ports:
+    #   - '3000:3000'
     restart: unless-stopped
     networks:
       - traefik
